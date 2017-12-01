@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Find Owner Data</title>
+</head>
+
+<?php
+
+// Address error handling
+
+ini_set('display_errors',1);
+error_reporting(E_ALL & ~E_NOTICE);
+
+//Attempt to Connect
+
+if ($connection = @mysql_connect ('localhost', 'DK8444', 'change')){
+
+	
+}
+else {
+	die('<p>Could not connect to MySQL because: <b>' .mysql_error() .
+	'</b></p>');
+}
+if (@mysql_select_db("DK8444_PROJECT1", $connection)){
+}
+else {
+	die('<p>Could not select the QW555_PROJECT1 database because: <b>' .mysql_error().'</b></p>');
+}
+
+$owner_num = $_POST['OWNER_NUM'];
+
+$query = "SELECT * FROM OWNER
+		   WHERE OWNER_NUM = ('$owner_num')";
+?>
+		<b>Here is the list of Owner data<b>
+		<?php
+if ($r = mysql_query($query))
+{
+	
+	while($row = mysql_fetch_array($r)){
+		?>
+		<table border="2">
+		<tr>
+		<td>OWNER_NUM</td>
+		<td><?php echo $row['OWNER_NUM']?></td> 
+		</tr>
+		<tr>
+		<td>LAST_NAME</td>
+		<td><?php echo $row['LAST_NAME']?></td> 
+		</tr>
+		<tr>
+		<td>FIRST_NAME</td>
+		<td><?php echo $row['FIRST_NAME']?></td> 
+		</tr>
+		<tr>
+		<td>ADDRESS</td>
+		<td><?php echo $row['ADDRESS']?></td> 
+		</tr>
+		<tr>
+		<td>CITY</td>
+		<td><?php echo $row['CITY']?></td> 
+		</tr>
+		<tr>
+		<td>STATE</td>
+		<td><?php echo $row['STATE']?></td> 
+		</tr>
+		<tr>
+		<td>ZIP</td>
+		<td><?php echo $row['ZIP']?></td> 
+		</tr>
+		</table> 
+		<?php
+}
+}
+?>
+
+<a href="Owner.html"> Here is a link back to the Owner PAGE </a></p>
+
+
+
+
+
+</html>
